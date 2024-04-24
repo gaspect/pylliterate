@@ -1,0 +1,4 @@
+inline: true
+sources:
+  pylliterate : docs
+  Readme.md: docs/index.md

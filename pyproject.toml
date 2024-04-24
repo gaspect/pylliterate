@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "pylliterate"
+version = "0.0.1"
+description = "Unobtrusive literate programming experience for Python pragmatists"
+authors = ["Jesús Enrique Fuentes <jesusefg12@gmail.com>", "Alejandro Piad <alepiad@gmail.com>"]
+license = "MIT"
+readme = "Readme.md"
+
+[tool.poetry.scripts]
+pylliterate = "pylliterate.cli:app"
+
+[tool.poetry.dependencies]
+python = "3.12"
+typer = "0.12.3"
+rich = "9.0.1"
+PyYAML = "6.0.1"
+pydantic = "2.7.1"
+watchdog = "2.3.1"
+
+[tool.poetry.dev-dependencies]
+mkdocs = "1.5.3"
+black = "24.4.0"
+mkdocs-material = "9.5.18"
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
