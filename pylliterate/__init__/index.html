@@ -1,0 +1,782 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gaspect.github.io/pylliterate/pylliterate/__init__/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../core/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>pylliterate - Illiterate</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#writing-as-a-pylliterate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Illiterate" class="md-header__button md-logo" aria-label="Illiterate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Illiterate
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              pylliterate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gaspect/pylliterate" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Illiterate" class="md-nav__button md-logo" aria-label="Illiterate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Illiterate
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gaspect/pylliterate" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    pylliterate
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writing-as-a-pylliterate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing as a pylliterate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-level implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High-level implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-outer-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      The outer loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-each-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing each file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-from-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to go from here?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.cli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../__main__/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.main
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writing-as-a-pylliterate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing as a pylliterate
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-level-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-level implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High-level implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-outer-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      The outer loop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-each-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing each file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-go-from-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to go from here?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>pylliterate</h1>
+
+<div class="admonition info">
+<p class="admonition-title">Pylliterate</p>
+</div>
+<p>Pylliterate is a Python library for crafting self-documenting code,
+loosely following the literate programming paradigm.
+The library itself is coded following pylliterate "best practices",
+so by reading this, either in source code or in the rendered documentation,
+you should be able to understand what we want to achieve.
+If you don't, then we have done a pretty bad job.</p>
+<p>The basic idea is that code should be self-explanatory, but not in
+the sense that it doesn't require comments. Rather, it should be
+self-explanatory because comments and code together flow naturally and
+interweave with each other in a manner that is easy to read by people
+beyond those who wrote it.</p>
+<p>This means that comments should be writen in prose, with correct grammar,
+and not in short phrases next to some instructions without any context.
+It should be pleasing to read.</p>
+<p>This also means that you are forced to organize your source code in a way
+that allows the narrative to flow. For example, it will force you to put
+the most important definitions (clases and methods) at the top, and leave
+implementation details for the end.</p>
+<p>I know some will complain, and say "but why am I forced to organize my code in a specific way!?".
+Well, there is no real restriction to organizing code in Python other than for scoping rules,
+i.e., that any symbol you use is already defined before. Other than that, you either don't care
+how the code is organized, in which case it is better to have some guidelines, or you do
+care how your code is organized. In this second case, if the way your code is organized is not already
+optimized for readability, then my opinion is that you're organizing it wrong. Plain and simple.</p>
+<p>With pylliterate, you always organize your code in the way that best fits the explanation.
+And when you are required to import something or define something at some point, then you better
+have a good excuse for including it there. If you're doing it right, you should have already
+explained your why's, and you should be fairly justified at that point.</p>
+<p>To get in the right mindset for this paradigm shift, think of your source in the following terms.
+You are a narrator talking to yourself (the future you), trying to explain how this code works.
+Instead of the code being the important thing, is the narrative what matters.
+The code just happens to be inserted into some points of the narrative to actually do what the
+narrative says.</p>
+<p>There are many ways to explain an idea, but one of the most successful from my point of view is
+by trying to answer the following questions, in order: why, what, and how.
+Always start with the motivation, <strong>why</strong> is code necessary, to solve which problem?
+Then move to the proposed solution, <strong>what</strong> are you actually going to do, which are the components of the solution?
+And then add the implementation details: <strong>how</strong> is each subtask implemented?</p>
+<p>There are many advantages to this idea. Two of the most important ones are:</p>
+<ul>
+<li>
+<p>Anyone reading this code in the future should be able to understand it, specially because
+  now not only the implementation details are there, but also all the motivation behind choosing some
+  approach rather than another.</p>
+</li>
+<li>
+<p>It will make much easier for yourself to actually develop the project because it will
+  force you to think about the problem you want to solve before thinking about the solution. And it will
+  force you to write down explicitly what is that problem, what is the expected solution, which are the main
+  assumptions.</p>
+</li>
+</ul>
+<h2 id="writing-as-a-pylliterate">Writing as a pylliterate<a class="headerlink" href="#writing-as-a-pylliterate" title="Permanent link">&para;</a></h2>
+<p>Now let's talk about using pylliterate. As you have seen so far, these are just regular comments in the code.
+That's it, nothing has changed. You just need the right mindset.</p>
+<p>Each comment will be parsed and ultimately rendered as Markdown, so you are free to include any Markdown
+styling that you want, including lists, <strong>bold</strong>, <code>code</code>, and even sections (using <code>##</code>).
+At the beginning of this file you can see the docstrings. They are rendered exactly the same in the final
+documentation as regular Markdown, but since they also serve as the internal documentation of this module
+for IntelliSense purposes, you have to decide how much narrative do you want to be part of the "core" documentation.</p>
+<p>And then you just add the code as always. Illiterate Python files are just regular Python files,
+so everything should work the same as before.</p>
+<h2 id="high-level-implementation">High-level implementation<a class="headerlink" href="#high-level-implementation" title="Permanent link">&para;</a></h2>
+<p>Illiterate is a very simple program. All it does is parse Python files, which are converted to some
+intermediate representation, and then writes them back in Markdown. However, this "parsing" is very simple,
+because we don't really need to understand the Python code. We just need to separate a file into blocks
+of Markdown and blocks of Python, and then write that back.
+There is some nuance here, to be fair, because we do want to handle some low-level annotations, like
+references to existing types and members, but we'll get there pretty soon.</p>
+<p>To organize this process, we will have classes that represent the different types of content,
+and then a very simple parser that scans a file top-to-bottom and builds the corresponding block.
+At this point, however, we only care about the high-level architecture.</p>
+<p>Starting at root folder, we will process all the <code>.py</code> files in sequence, producing for each one
+a markdown file that will be saved to the output folder.</p>
+<h3 id="the-outer-loop">The outer loop<a class="headerlink" href="#the-outer-loop" title="Permanent link">&para;</a></h3>
+<p>In the output, filenames will match the folder structure that we find, only changing the
+<code>.py</code> with an <code>.md</code> extension and every "/" with a dot.
+For example <code>src/moduleA/moduleB/file.py</code> will become <code>output/moduleA.moduleB.file.md</code>.
+We will use <code>pathlib.Path</code> for that purpose.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">rich.progress</span> <span class="kn">import</span> <span class="n">track</span>
+<span class="kn">from</span> <span class="nn">pylliterate.config</span> <span class="kn">import</span> <span class="n">PylliterateConfig</span>
+<span class="kn">from</span> <span class="nn">.core</span> <span class="kn">import</span> <span class="n">Parser</span>
+</code></pre></div>
+<p>Next comes our top level functions that processes each file.
+Notice how we also have docstrings in each function, as usual.
+Docstrings are for guiding developers when inspecting our code via IntelliSense and such.
+Hence, they should be fairly self-contained.</p>
+<p>You will also notice that methods have comments, as usual. However, inline comments do not
+lend themselves very well to a coherent and flowing narrative. They are better suited to
+explain very concise ideas.
+For this reason, pylliterate won't render those comments as Markdown. They are an integral part
+of your code, and will be rendered as code.
+If you want to render them as Markdown, you will have to explicitly pass <code>--inline</code> in the CLI.</p>
+<p>Hence, you will be forced to refactor your methods so that they are as small as possible.
+That way, they will have as little comments as possible, ideally none, because the surrounding
+comments are already enough to make everything as clear as it needs to be.
+If a method, including comments, is longer than one screen of text, consider refactoring it.</p>
+<h3 id="processing-each-file">Processing each file<a class="headerlink" href="#processing-each-file" title="Permanent link">&para;</a></h3>
+<p>Processing a single file is quite straightforward as well.
+We will be using a <a href="ref:pylliterate/core:Parser"><code>Parser</code></a> class that does all the heavy-lifting.
+We feed the parser with the input, and it will return an object (of type <a href="ref:pylliterate/core:Content"><code>Content</code></a>)
+that knows how to write itself into a file in Markdown.
+Note that we just used two internal references in the previous sentences. We'll see how these special constructions
+are handled when look at the parser implementation but, spoiler alert, it involves some regex.
+Be aware of the  <a href="ref:pylliterate/config:PylliterateConfig"><code>PylliterateConfig</code></a> class that hold parameters needed
+in each processing file</p>
+<p><a name="ref:process"></a></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">input_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
+</code></pre></div>
+<p>We need to create this folder hierarchy if it doesn't exist:</p>
+<div class="highlight"><pre><span></span><code>    <span class="n">output_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>First we check if this is just a regular copy</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">if</span> <span class="n">input_path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">&quot;.py&quot;</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+        <span class="k">return</span>
+</code></pre></div>
+<p>Otherwise, we parse, passing also the file name.</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">with</span> <span class="n">input_path</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">(</span>
+            <span class="n">fp</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="n">input_path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">input_path</span><span class="o">.</span><span class="n">parent</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+</code></pre></div>
+<p>And then we dump the parsed content.</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">with</span> <span class="n">output_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+</code></pre></div>
+<p>Now is easy process all configured files at once</p>
+<p><a name="ref:process_all"></a></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process_all</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">files</span><span class="p">)</span>
+</code></pre></div>
+<p>This function does all the heavy-lifting...</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">for</span> <span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span> <span class="ow">in</span> <span class="n">track</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+</code></pre></div>
+<p>And that's it. As you can see, being forced to describe our process in this way also
+forces us to write pretty small methods, and to organize our code in the way that is
+easier to explain. This might seem daunting at first, but believe me (and thousands of
+computer scientists and software engineers that have been saying this for decades),
+every effort that you take now to make your code more readable will be paid in the future
+when you have to come back.</p>
+<h2 id="where-to-go-from-here">Where to go from here?<a class="headerlink" href="#where-to-go-from-here" title="Permanent link">&para;</a></h2>
+<p>As you have seen, pylliterate makes no assumption about the order in which your files will be read.
+If you want to force a particular order, that goes into your <code>mkdocs.yml</code>
+(or wherever your documentation engine says). However, since this is Markdown, you can include
+links anywhere you want, since only you know how your documentation engine generates links.</p>
+<p>Illiterate automatically generates anchors for top-level definitions of classes and methods, in
+the form <code>ref:module:ClassName</code> or <code>ref:module:method_name</code>.
+As an example, you can read more about the <a href="ref:pylliterate/core:Parser"><code>Parser</code></a>
+(which is an auto-generated link)
+or you can directly see <a href="ref:pylliterate/cli">how the CLI works</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+    
+  </body>
+</html>

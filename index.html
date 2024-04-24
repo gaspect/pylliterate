@@ -1,0 +1,724 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gaspect.github.io/pylliterate/">
+      
+      
+      
+        <link rel="next" href="pylliterate/__init__/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Illiterate</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pylliterate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Illiterate" class="md-header__button md-logo" aria-label="Illiterate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Illiterate
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/gaspect/pylliterate" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Illiterate" class="md-nav__button md-logo" aria-label="Illiterate" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Illiterate
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/gaspect/pylliterate" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-all-this-python-il-literatepyliterate-programming-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is all this (python il-literate)pyliterate programming about?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#so-what-does-pylliterate-proposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      So what does pylliterate proposes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How this works?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How this works?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tweak-using-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      A tweak using settings.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pylliterate/__init__/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pylliterate/core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pylliterate/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.config
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pylliterate/cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.cli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pylliterate/__main__/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pylliterate.main
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-all-this-python-il-literatepyliterate-programming-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is all this (python il-literate)pyliterate programming about?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#so-what-does-pylliterate-proposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      So what does pylliterate proposes?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-this-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How this works?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How this works?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-tweak-using-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      A tweak using settings.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next steps
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="pylliterate">Pylliterate<a class="headerlink" href="#pylliterate" title="Permanent link">&para;</a></h1>
+<p><a href="https://pypi.org/project/pylliterate"><img alt="PyPI" src="https://img.shields.io/pypi/v/pylliterate"></a>
+<a href="https://github.com/gaspect/pylliterate"><img alt="PyPI - License" src="https://img.shields.io/pypi/l/pylliterate"></a>
+<a href="https://pypi.org/project/pylliterate"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pylliterate"></a>
+<a href="https://github.com/gaspect/pylliterate/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/gaspect/pylliterate?style=social"></a>
+<a href="https://github.com/gaspect/pylliterate/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/gaspect/pylliterate?style=social"></a></p>
+<blockquote>
+<p>Unobtrusive literate programming experience for Python pragmatists</p>
+<p>Disclaimer: This code is a copy <strong>with improvements</strong> of the original <a href="https://github.com/apiad/illiterate">illiterate</a> project because was discontinued since 2022.</p>
+</blockquote>
+<p><code>pylliterate</code> is a Python module that helps you apply <em>some</em> of the literate programming paradigm
+without requiring a meta-programming language (like <code>noweb</code>) or any preprocessing step to actually
+get your code up and running.</p>
+<p>It works kind of opposite to how literate programming suggests, in the sense that you write code-first
+and embed documentation into your code. I know, purist literate programmers will hate this but hey, it's a compromise.</p>
+<h2 id="what-is-all-this-python-il-literatepyliterate-programming-about">What is all this (python il-literate)pyliterate programming about?<a class="headerlink" href="#what-is-all-this-python-il-literatepyliterate-programming-about" title="Permanent link">&para;</a></h2>
+<p>If you've never heard about literate programming before, then I suggest you to read at least the 
+<a href="https://en.wikipedia.org/wiki/Literate_programming">Wikipedia entry</a>
+and then we can continue discussing. 
+It is a fascinating topic, and there are <a href="http://www.literateprogramming.com">many resources</a> out there.</p>
+<p>Back already? Ok, so here is pylliterate's take on this matter.</p>
+<p>Ideally, for literate programming to work, you would code in a meta-language mixing prose, code, and macros.
+This is great if everyone that will ever write code in your project is willing to indulge in literate programming.
+Sadly, I have found that more often that not, this is not the case.
+Hence, even though it is awesome, literate programming has some major practical drawbacks that, at this moment,
+make it impossible for many people to apply it widely, including:</p>
+<ul>
+<li>Poor support from editors and lack of tooling, which is not just a matter of syntax highlighting. The very feature that makes
+literate programming extra powerful, i.e., macros, makes it almost impossible for any semantic analysis to work, so forget
+about intellisense, smart completion, or interactive linting.</li>
+<li>A hard entry curve, since unfortunately people in the 21st century still learns to code the "old" way, that is,
+code-first. Introducing someone into literate programming is hard because it takes some time to grok it and understand the benefits.</li>
+<li>It's hard to incrementally switch to it. If you already have a somewhat large program written in the "traditional" way,
+it's very hard to port it to the literate programming paradigm incrementally. </li>
+</ul>
+<p>All these reasons make it, at least for me, almost impossible to apply pure literate programming in anything more
+than toy projects. However, I do love the paradigm, and I do think it makes you a better programmer, and makes your code
+easier to maintain and understand. I wanted a way to introduce as much of literate programming as possible into the
+traditional programming paradigms, but still being able to use the same tools, introducing literate programming
+idiosyncrasies incrementally into existing
+codebases but "flying under the radar" as much as possible, so detractors don't complain.</p>
+<p>Hence, <code>pylliterate</code> was born. It is called that way in part because is kind of a twist on the literate programming
+paradigm, and also because it is supposed to help us pylliterates to write more literate code.</p>
+<h2 id="so-what-does-pylliterate-proposes">So what does pylliterate proposes?<a class="headerlink" href="#so-what-does-pylliterate-proposes" title="Permanent link">&para;</a></h2>
+<p>Glad you asked. The idea is to encourage a more literate codebase while introducing as few changes as possible.
+Specifically, you should not need to use new tools, editor extensions, or preprocessors. Code written using the 
+pylliterate style looks exactly like regular code, but hopefully, a bit better.</p>
+<p>Everything stems from these key principles:</p>
+<ul>
+<li>Documentation for a codebase should be written as prose, and it should be enjoyable to read it top to bottom. 
+It should not be simply a list of modules and methods with few-line descriptions; rather, it should be a cohesive
+piece of literature that clearly explains the authors' intents for any small details and how everything fits into the bigger
+picture.</li>
+<li>Documentation should be as close as possible to real code, ideally right next to it, instead of in external 
+markdown files that can easily get out of sync. Furthermore, there should be some automated way
+to ensure that documentation is up to date, ideally with embedded unit tests that fail if documentation is wrong.</li>
+<li>Documentation should be written both for users of your code and future developers, and it should be
+easy for anyone to dive as deep as they want. This means that users only interested in calling your high-level
+API can easily understand how to use it, while collaborators or anyone wanting to understand how everything works
+should also be able to follow all the details.</li>
+</ul>
+<p>To achieve these objectives, pylliterate proposes really only one major paradigm shift:</p>
+<blockquote>
+<p><strong>Your code is the documentation.</strong></p>
+</blockquote>
+<p>That's it. You will simply write all the documentation for your code right inside your code, as comments and as Python docstrings,
+according that what is more convenient for each case. But keep this in mind, <em>all your code will be published as-is for documentation purposes</em>.</p>
+<p>Now you are forced to think about your code in terms of: "well, this will be read by users at some point, so I better make it as publishable as possible".
+This means that you can no longer simply put some throw-away code in some forsaken <code>_tmp.py</code> file. That file will appear in the documentation, so it better be publishable.</p>
+<h2 id="how-this-works">How this works?<a class="headerlink" href="#how-this-works" title="Permanent link">&para;</a></h2>
+<p>The only thing that pylliterate does is taking your Python repository and turn it into Markdown files.
+It will parse all your code, and output nicely formatted Markdown versions of each <code>.py</code> file. It is up to you that what is writen in those <code>.py</code> files is something worth publishing as documentation.</p>
+<p>To use it, you simply run:</p>
+<div class="codehilite"><pre><span></span><code>python -m pylliterate build --src input:output --src .....
+</code></pre></div>
+
+<p>Where <code>input</code> is a folder or file holding your project's code (i.e., the top-level folder with an <code>__init__.py</code> inside), and <code>output</code> is where you want the markdown files. You can add  the <code>--src</code> argument as many times as needed even for copy verbatim files.</p>
+<p>I can do this for copying the <code>Readme.md</code> into an <code>index.md</code> which becomes the homepage.</p>
+<div class="codehilite"><pre><span></span><code>python -m pylliterate build --src Readme.md:docs/index.md
+</code></pre></div>
+
+<p>For example, in this project, standing on the root folder (where this Readme is located), you would run the following (🤓 yeah, it is kind if Inception-ish):</p>
+<div class="codehilite"><pre><span></span><code>python -m pylliterate --src pylliterate:docs --src Readme.md/index.md
+</code></pre></div>
+
+<p>This will take all the code in <code>pylliterate</code>, convert it to Markdown, and drop it inside the <code>docs</code> folder.
+It will also copy the <code>Readme.md</code> file into <code>docs/index.md</code>.</p>
+<h3 id="a-tweak-using-settings">A tweak using settings.<a class="headerlink" href="#a-tweak-using-settings" title="Permanent link">&para;</a></h3>
+<p>The same procedure can be obtained using configuration files. The configuration files have the following structure:</p>
+<div class="highlight"><pre><span></span><code>inline: true # true if we want to process the comments within code blocks
+sources: # List of files to be processed or copied
+  python_package/sample_input.py: sample_docs_folder/sample_input.md  # input:output pair as in command line use case
+</code></pre></div>
+<p>The configuration is usually in a file called <strong>pylliterate.yml</strong> somehow mimicking mkdocs.</p>
+<p>You can mix pylliterate with regular markdown simply by hand-crafting all the documentation you want in pure Markdown and then conveniently designing your <code>mkdocs.yml</code>.
+You can also see the <code>mkdocs.yml</code> in this repository to get an idea of how that configuration looks, but beware, I'm using some custom
+themes and other stuff you might or might not want.</p>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>This project is quite small, but it is a self-fulfilling prophecy. The remaining <a href="https://gaspect.github.io/pylliterate">documentation</a> has been written with <code>pylliterate</code>. Just keep reading, and you'll see for yourself what does this mean.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+    
+  </body>
+</html>
