@@ -1,6 +1,6 @@
 .PHONY: build
 build:
-	python -m pylliterate
+	python -m pylliterate build
 
 .PHONY: publish
 publish:
