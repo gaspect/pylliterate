@@ -1,6 +1,6 @@
 # !!! info "Core"
-# This module contains the classes that represent the types of content
-# inside a Python file and perform the necessary conversions.
+#     This module contains the classes that represent the types of content
+#     inside a Python file and perform the necessary conversions.
 
 from __future__ import annotations
 

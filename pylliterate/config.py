@@ -1,5 +1,5 @@
 # !!! info "This module contains the pylliterate configuration class"
-# The configuration class is a mapper between user define configuration and a python object.
+#     The configuration class is a mapper between user define configuration and a python object.
 
 
 # We start as usually,  importing necessary modules

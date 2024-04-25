@@ -1,6 +1,6 @@
 # !!! info "This module contains the pylliterate CLI application."
-# The CLI application is basically a [Typer](https://typer.tiangolo.com) application
-# with three commands, that manage the whole process.
+#     The CLI application is basically a [Typer](https://typer.tiangolo.com) application
+#     with three commands, that manage the whole process.
 
 
 # The pylliterate CLI app is a very simple [Typer](https://typer.tiangolo.com)
@@ -119,6 +119,3 @@ def watch(config: PylliterateConfig):
 
     observer.start()
     observer.join()
-
-
-# ## Processing a config file
