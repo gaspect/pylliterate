@@ -1,4 +1,6 @@
-# Pylliterate
+# Pylliterate: python illiterate programing
+
+> Disclaimer: This code is a copy **with improvements** of the original [illiterate](https://github.com/apiad/illiterate) project because was discontinued since 2022.
 
 [<img alt="PyPI" src="https://img.shields.io/pypi/v/pylliterate">](https://pypi.org/project/pylliterate)
 [<img alt="PyPI - License" src="https://img.shields.io/pypi/l/pylliterate">](https://github.com/gaspect/pylliterate)
@@ -7,8 +9,6 @@
 [<img alt="GitHub forks" src="https://img.shields.io/github/forks/gaspect/pylliterate?style=social">](https://github.com/gaspect/pylliterate/network/members)
 
 > Unobtrusive literate programming experience for Python pragmatists
-
-> Disclaimer: This code is a copy **with improvements** of the original [illiterate](https://github.com/apiad/illiterate) project because was discontinued since 2022.
 
 `pylliterate` is a Python module that helps you apply _some_ of the literate programming paradigm
 without requiring a meta-programming language (like `noweb`) or any preprocessing step to actually
@@ -48,9 +48,9 @@ idiosyncrasies incrementally into existing
 codebases but "flying under the radar" as much as possible, so detractors don't complain.
 
 Hence, `pylliterate` was born. It is called that way in part because is kind of a twist on the literate programming
-paradigm, and also because it is supposed to help us pylliterates to write more literate code.
+paradigm, and also because it is supposed to help us illiterates to write more literate code.
 
-## So what does pylliterate proposes?
+## So what does pylliterate propose?
 
 Glad you asked. The idea is to encourage a more literate codebase while introducing as few changes as possible.
 Specifically, you should not need to use new tools, editor extensions, or preprocessors. Code written using the 
