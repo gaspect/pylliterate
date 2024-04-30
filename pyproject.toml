@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pylliterate"
-version = "0.0.3"
+version = "0.0.4"
 description = "Unobtrusive literate programming experience for Python pragmatists"
 authors = ["Jesús Enrique Fuentes <jesusefg12@gmail.com>", "Alejandro Piad <alepiad@gmail.com>"]
 license = "MIT"
