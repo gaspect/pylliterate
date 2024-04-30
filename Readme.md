@@ -1,7 +1,5 @@
 # Pylliterate: python illiterate programing
 
-> Disclaimer: This code is a copy **with improvements** of the original [illiterate](https://github.com/apiad/illiterate) project because was discontinued since 2022.
-
 [<img alt="PyPI" src="https://img.shields.io/pypi/v/pylliterate">](https://pypi.org/project/pylliterate)
 [<img alt="PyPI - License" src="https://img.shields.io/pypi/l/pylliterate">](https://github.com/gaspect/pylliterate)
 [<img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pylliterate">](https://pypi.org/project/pylliterate)
@@ -121,3 +119,6 @@ themes and other stuff you might or might not want.
 ## Next steps
 
 This project is quite small, but it is a self-fulfilling prophecy. The remaining [documentation](https://gaspect.github.io/pylliterate) has been written with `pylliterate`. Just keep reading, and you'll see for yourself what does this mean.
+
+
+> Disclaimer: This code is a copy **with improvements** of the original [illiterate](https://github.com/apiad/illiterate) project because was discontinued since 2022.
