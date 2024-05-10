@@ -128,7 +128,7 @@ from .core import Parser
 # in each processing file
 
 
-def process(input_path: Path, output_path: Path, config: PylliterateConfig):
+def process(input_path: Path, output_path: Path, konfig: PylliterateConfig):
     # We need to create this folder hierarchy if it doesn't exist:
     output_path.parent.mkdir(exist_ok=True)
 
@@ -140,7 +140,7 @@ def process(input_path: Path, output_path: Path, config: PylliterateConfig):
     # Otherwise, we parse, passing also the file name.
     with input_path.open() as fp:
         content = Parser(
-            fp, config=config, module_name=input_path.name, location=input_path.parent
+            fp, config=konfig, module_name=input_path.name, location=input_path.parent
         ).parse()
 
     # And then we dump the parsed content.

@@ -8,6 +8,11 @@ import logging
 import collections
 from pathlib import Path
 
+import abc
+import re
+import enum
+from typing import TextIO, List
+
 from pylliterate.config import PylliterateConfig
 
 logger = logging.getLogger("pylliterate")
@@ -33,12 +38,6 @@ logger = logging.getLogger("pylliterate")
 
 # The common functionality will go into an abstract class.
 
-import abc
-import re
-import enum
-from typing import TextIO, List
-
-
 # ## Content Blocks
 
 # The only relevant functionality in this class is cleaning up
@@ -54,13 +53,13 @@ class Block(abc.ABC):
         self.name = name
 
         while content:
-            if not content[0].strip():  # testing for emptyness
+            if not content[0].strip():  # testing for emptiness
                 content.pop(0)  # from the top down
             else:
                 break
 
         while content:
-            if not content[-1].strip():  # testing for emptyness
+            if not content[-1].strip():  # testing for emptiness
                 content.pop()  # from the bottom up
             else:
                 break
@@ -98,7 +97,10 @@ class Markdown(Block):
         for line in self.content:
             line = self.fix_links(line.strip())
 
-            if line.startswith("# "):
+            # Ignoring inspection disabling lines for Intellij IDE
+            if line.find("noinspection") != -1:
+                continue
+            elif line.startswith("# "):
                 if match := self.hl_re.search(line):
                     ref = match.group("ref")
                     block = content[ref]
@@ -112,7 +114,7 @@ class Markdown(Block):
 
                     with open(content.location / file) as include:
                         lines = include.readlines()
-
+                        # noinspection PyAssignmentToLoopOrWithParameter
                         for line in lines[start:end]:
                             fp.write(line)
                     continue
@@ -216,7 +218,8 @@ class Python(Block):
 
         return anchors
 
-    def strip(self, line: str):
+    @staticmethod
+    def strip(line: str):
         result = []
         comment = False
 
