@@ -493,13 +493,16 @@
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cached_property</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;pylliterate&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="the-configuration-class">The configuration class<a class="headerlink" href="#the-configuration-class" title="Permanent link">&para;</a></h2>
-<p>We define a configuration class for Pylliterate using Pydantic's BaseModel for proper auto mapping and validation</p>
+<p>We define a configuration class for Pylliterate using Pydantic BaseModel for proper
+auto mapping and validation. We took a KISS and single responsibility approach binding all configuration related
+logic to this class instead of build an anemic POJO class</p>
 <p><a name="ref:PylliterateConfig"></a></p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PylliterateConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </code></pre></div>
@@ -518,25 +521,40 @@
 <p>sources is a dictionary mapping source file paths to their respective documentation file paths</p>
 <div class="highlight"><pre><span></span><code>    <span class="n">sources</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
 </code></pre></div>
+<p>A class error bound to this class because <code>only this class can throw that error</code>, is the error threw when
+pylliterate configuration isn't provided</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">class</span> <span class="nc">ConfigurationNotProvidedException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;At least one source or a config file must be provided.&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p>We need a class method that creates an instance of PylliterateConfig
 from a list of source files and other options, the make method fulfill goal</p>
 <div class="highlight"><pre><span></span><code>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">make</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sources</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-</code></pre></div>
-<p>initialize empty dictionary</p>
-<div class="highlight"><pre><span></span><code>        <span class="n">source_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">inline</span><span class="p">,</span> <span class="n">linenums</span><span class="p">,</span> <span class="n">highlights</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PylliterateConfig&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">config</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+                <span class="n">cfg</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">src</span> <span class="ow">and</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;pylliterate.yml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;pylliterate.yml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+                <span class="n">cfg</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">src</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ConfigurationNotProvidedException</span><span class="p">()</span>
+            <span class="n">sources</span> <span class="o">=</span> <span class="p">{}</span>
 </code></pre></div>
 <p>iterate over every source line</p>
-<div class="highlight"><pre><span></span><code>        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code>            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">src</span><span class="p">:</span>
 </code></pre></div>
 <p>split the line into the input file path and output file path</p>
-<div class="highlight"><pre><span></span><code>            <span class="nb">input</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>                <span class="n">i</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>add the input and output paths to the dictionary</p>
-<div class="highlight"><pre><span></span><code>            <span class="n">source_dict</span><span class="p">[</span><span class="nb">input</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
+<div class="highlight"><pre><span></span><code>                <span class="n">sources</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span>
 </code></pre></div>
 <p>return an instance of PylliterateConfig with the specified sources and options</p>
-<div class="highlight"><pre><span></span><code>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">sources</span><span class="o">=</span><span class="n">source_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>            <span class="n">cfg</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">sources</span><span class="o">=</span><span class="n">sources</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="n">inline</span><span class="p">,</span> <span class="n">linenums</span><span class="o">=</span><span class="n">linenums</span><span class="p">,</span>
+                      <span class="n">highlights</span><span class="o">=</span><span class="n">highlights</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cfg</span>
 </code></pre></div>
 <p>Since the sources attribute is a user-friendly representation of the file system,
 we need to process it in order to use it correctly. That's what the property files does.</p>
@@ -552,13 +570,16 @@ we need to process it in order to use it correctly. That's what the property fil
 <p>if the input path if a directory we try to expand it</p>
 <div class="highlight"><pre><span></span><code>            <span class="k">if</span> <span class="n">in_path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span> <span class="ow">and</span> <span class="n">out_path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
                 <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">in_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;*.py&quot;</span><span class="p">):</span>
-                    <span class="k">yield</span> <span class="p">(</span><span class="n">in_path</span> <span class="o">/</span> <span class="n">file</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">in_path</span><span class="p">)),</span> <span class="p">(</span><span class="n">out_path</span> <span class="o">/</span> <span class="n">in_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span> <span class="o">/</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">in_path</span><span class="p">))</span>
-                                                                  <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.py&quot;</span><span class="p">,</span> <span class="s2">&quot;.md&quot;</span><span class="p">))</span>
+                    <span class="k">yield</span> <span class="p">(</span><span class="n">in_path</span> <span class="o">/</span> <span class="n">file</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">in_path</span><span class="p">)),</span> <span class="p">(</span>
+                            <span class="n">out_path</span> <span class="o">/</span> <span class="n">in_path</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span> <span class="o">/</span> <span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">in_path</span><span class="p">))</span>
+                            <span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.py&quot;</span><span class="p">,</span> <span class="s2">&quot;.md&quot;</span><span class="p">))</span>
             <span class="k">elif</span> <span class="n">in_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">in_path</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
                 <span class="k">yield</span> <span class="n">in_path</span><span class="p">,</span> <span class="n">out_path</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Improper input or output path for </span><span class="si">{</span><span class="n">in_path</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">out_path</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
 </code></pre></div>
 
 

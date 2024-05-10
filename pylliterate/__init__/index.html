@@ -681,7 +681,7 @@ are handled when look at the parser implementation but, spoiler alert, it involv
 Be aware of the  <a href="ref:pylliterate/config:PylliterateConfig"><code>PylliterateConfig</code></a> class that hold parameters needed
 in each processing file</p>
 <p><a name="ref:process"></a></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">input_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">input_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">konfig</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
 </code></pre></div>
 <p>We need to create this folder hierarchy if it doesn't exist:</p>
 <div class="highlight"><pre><span></span><code>    <span class="n">output_path</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -694,7 +694,7 @@ in each processing file</p>
 <p>Otherwise, we parse, passing also the file name.</p>
 <div class="highlight"><pre><span></span><code>    <span class="k">with</span> <span class="n">input_path</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
         <span class="n">content</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">(</span>
-            <span class="n">fp</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="n">input_path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">input_path</span><span class="o">.</span><span class="n">parent</span>
+            <span class="n">fp</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">konfig</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="n">input_path</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">input_path</span><span class="o">.</span><span class="n">parent</span>
         <span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
 </code></pre></div>
 <p>And then we dump the parsed content.</p>

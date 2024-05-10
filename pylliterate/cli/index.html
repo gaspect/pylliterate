@@ -413,6 +413,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-watching-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      The watching system
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -501,6 +510,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#the-watching-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      The watching system
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -532,7 +550,6 @@ Typer is a CLI creation tool where you define commands as methods,
 and it takes advantage of Python type annotations to provide argument parsing
 and documentation.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">typer</span>
-<span class="kn">import</span> <span class="nn">yaml</span>
 </code></pre></div>
 <p>These two are for watching file changes.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">watchdog.events</span> <span class="kn">import</span> <span class="n">FileModifiedEvent</span><span class="p">,</span> <span class="n">FileSystemEventHandler</span>
@@ -550,27 +567,9 @@ and documentation.</p>
 <div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
 </code></pre></div>
 <h2 id="command-helpers">Command helpers<a class="headerlink" href="#command-helpers" title="Permanent link">&para;</a></h2>
-<p>Most of the commands will take either CLI args or a --config file. So we will define a private function to take
-care of configuration load  either from a specified configuration file or using default values and parameters provided</p>
-<p><a name="ref:_load_config"></a></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_load_config</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">inline</span><span class="p">,</span> <span class="n">linenums</span><span class="p">,</span> <span class="n">highlights</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">config</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-            <span class="n">cfg</span> <span class="o">=</span> <span class="n">PylliterateConfig</span><span class="p">(</span><span class="o">**</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="n">src</span> <span class="ow">and</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;pylliterate.yml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;pylliterate.yml&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-            <span class="n">cfg</span> <span class="o">=</span> <span class="n">PylliterateConfig</span><span class="p">(</span><span class="o">**</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">fp</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">src</span><span class="p">:</span>
-            <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;At least one source or a config file must be provided.&quot;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">cfg</span> <span class="o">=</span> <span class="n">PylliterateConfig</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">sources</span><span class="o">=</span><span class="n">src</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="n">inline</span><span class="p">,</span> <span class="n">linenums</span><span class="o">=</span><span class="n">linenums</span><span class="p">,</span>
-                                     <span class="n">highlights</span><span class="o">=</span><span class="n">highlights</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">cfg</span>
-</code></pre></div>
-<p>Then we use a decorator to bookkeeping common code between all commands</p>
-<p><a name="ref:pylliterate_command"></a></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">pylliterate_command</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+<p>We use a decorator to bookkeeping common code between all commands</p>
+<p><a name="ref:configurable"></a></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">configurable</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">command</span><span class="p">(</span>
             <span class="n">src</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">([]),</span>
             <span class="n">inline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -579,9 +578,12 @@ care of configuration load  either from a specified configuration file or using 
             <span class="n">title</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="n">config</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="n">cfg</span> <span class="o">=</span> <span class="n">_load_config</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">inline</span><span class="p">,</span> <span class="n">linenums</span><span class="p">,</span> <span class="n">highlights</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
-
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cfg</span> <span class="o">=</span> <span class="n">PylliterateConfig</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">inline</span><span class="p">,</span> <span class="n">linenums</span><span class="p">,</span> <span class="n">highlights</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PylliterateConfig</span><span class="o">.</span><span class="n">ConfigurationNotProvidedException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">command</span>
 </code></pre></div>
 <h2 id="the-build-command">The build command<a class="headerlink" href="#the-build-command" title="Permanent link">&para;</a></h2>
@@ -590,21 +592,25 @@ is called when <code>python -m pylliterate build</code> is used.
 This command parse and creates the documentation based on its input parameters.</p>
 <p><a name="ref:build"></a></p>
 <div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;build&quot;</span><span class="p">)</span>
-<span class="nd">@pylliterate_command</span>
+<span class="nd">@configurable</span>
 <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
     <span class="n">process_all</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="the-config-command">The config command<a class="headerlink" href="#the-config-command" title="Permanent link">&para;</a></h2>
-<p><a name="ref:config"></a>
-<a name="ref:IlliterateHandler"></a>
-<a name="ref:watch"></a></p>
+<blockquote>
+<p>we named it konfig to avoid clashes with config parameter and shadowing</p>
+</blockquote>
+<p><a name="ref:konfig"></a></p>
 <div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;config&quot;</span><span class="p">)</span>
-<span class="nd">@pylliterate_command</span>
-<span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">dict</span><span class="p">()))</span>
-
-
-<span class="k">class</span> <span class="nc">IlliterateHandler</span><span class="p">(</span><span class="n">FileSystemEventHandler</span><span class="p">):</span>
+<span class="nd">@configurable</span>
+<span class="k">def</span> <span class="nf">konfig</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="the-watching-system">The watching system<a class="headerlink" href="#the-watching-system" title="Permanent link">&para;</a></h2>
+<p>With <code>watchdog</code> we need to define a class that hold the logic to be executed when filesystem change
+the PylliterateHandler class fulfil that purpose</p>
+<p><a name="ref:PylliterateHandler"></a></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PylliterateHandler</span><span class="p">(</span><span class="n">FileSystemEventHandler</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">input_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">PylliterateConfig</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -616,17 +622,19 @@ This command parse and creates the documentation based on its input parameters.<
     <span class="k">def</span> <span class="nf">on_modified</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">FileModifiedEvent</span><span class="p">):</span>
         <span class="n">typer</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recreating: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">input_path</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;watch&quot;</span><span class="p">)</span>
-<span class="nd">@pylliterate_command</span>
+</code></pre></div>
+<p>Then we add a command (maybe a flag in the needed command is just a better idea) that set up the watchdog observer
+mechanism over filesystem using our handler</p>
+<p><a name="ref:watch"></a></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;watch&quot;</span><span class="p">)</span>
+<span class="nd">@configurable</span>
 <span class="k">def</span> <span class="nf">watch</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">PylliterateConfig</span><span class="p">):</span>
     <span class="n">process_all</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
     <span class="n">observer</span> <span class="o">=</span> <span class="n">Observer</span><span class="p">()</span>
 
     <span class="k">for</span> <span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
         <span class="n">observer</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span>
-            <span class="n">IlliterateHandler</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">input_path</span>
+            <span class="n">PylliterateHandler</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">input_path</span>
         <span class="p">)</span>
 
     <span class="n">observer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>

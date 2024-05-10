@@ -514,6 +514,11 @@ inside a Python file and perform the necessary conversions.</p>
 <span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TextIO</span><span class="p">,</span> <span class="n">List</span>
+
 <span class="kn">from</span> <span class="nn">pylliterate.config</span> <span class="kn">import</span> <span class="n">PylliterateConfig</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;pylliterate&quot;</span><span class="p">)</span>
@@ -535,11 +540,6 @@ definitely a problem for Python code.
 Hence, we will remove all the empty lines at the beginning and the end
 of each block.</p>
 <p>The common functionality will go into an abstract class.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">enum</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TextIO</span><span class="p">,</span> <span class="n">List</span>
-</code></pre></div>
 <h2 id="content-blocks">Content Blocks<a class="headerlink" href="#content-blocks" title="Permanent link">&para;</a></h2>
 <p>The only relevant functionality in this class is cleaning up
 the list of content.
@@ -553,13 +553,13 @@ will override to determine how different types of content are printed.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
         <span class="k">while</span> <span class="n">content</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>  <span class="c1"># testing for emptyness</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>  <span class="c1"># testing for emptiness</span>
                 <span class="n">content</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># from the top down</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">break</span>
 
         <span class="k">while</span> <span class="n">content</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>  <span class="c1"># testing for emptyness</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>  <span class="c1"># testing for emptiness</span>
                 <span class="n">content</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># from the bottom up</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">break</span>
@@ -593,8 +593,11 @@ in our documentation, and have it translated automatically to
     <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fp</span><span class="p">:</span> <span class="n">TextIO</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">Content</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
             <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fix_links</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-
-            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;# &quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Ignoring inspection disabling lines for Intellij IDE</p>
+<div class="highlight"><pre><span></span><code>            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;noinspection&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;# &quot;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">match</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hl_re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
                     <span class="n">ref</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;ref&quot;</span><span class="p">)</span>
                     <span class="n">block</span> <span class="o">=</span> <span class="n">content</span><span class="p">[</span><span class="n">ref</span><span class="p">]</span>
@@ -608,8 +611,8 @@ in our documentation, and have it translated automatically to
 
                     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">location</span> <span class="o">/</span> <span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">include</span><span class="p">:</span>
                         <span class="n">lines</span> <span class="o">=</span> <span class="n">include</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-
-                        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]:</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>                        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]:</span>
                             <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
                     <span class="k">continue</span>
 
@@ -684,7 +687,8 @@ in a different Python block than its inner methods.</p>
 
         <span class="k">return</span> <span class="n">anchors</span>
 
-    <span class="k">def</span> <span class="nf">strip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">strip</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">comment</span> <span class="o">=</span> <span class="kc">False</span>
 
