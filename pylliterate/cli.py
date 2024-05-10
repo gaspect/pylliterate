@@ -2,7 +2,6 @@
 #     The CLI application is basically a [Typer](https://typer.tiangolo.com) application
 #     with three commands, that manage the whole process.
 
-
 # The pylliterate CLI app is a very simple [Typer](https://typer.tiangolo.com)
 # application with three commands.
 # Typer is a CLI creation tool where you define commands as methods,
@@ -11,7 +10,6 @@
 
 
 import typer
-import yaml
 
 # These two are for watching file changes.
 
@@ -31,31 +29,12 @@ from typing import List
 # We start by creating the main typer application and a set of related commands.
 app = typer.Typer()
 
+
 # ## Command helpers
 
-# Most of the commands will take either CLI args or a --config file. So we will define a private function to take
-# care of configuration load  either from a specified configuration file or using default values and parameters provided
+# We use a decorator to bookkeeping common code between all commands
 
-
-def _load_config(src, inline, linenums, highlights, title, config):
-    if config:
-        with config.open() as fp:
-            cfg = PylliterateConfig(**yaml.safe_load(fp))
-    elif not src and Path("pylliterate.yml").exists():
-        with open("pylliterate.yml") as fp:
-            cfg = PylliterateConfig(**yaml.safe_load(fp))
-    else:
-        if not src:
-            typer.echo("At least one source or a config file must be provided.")
-            raise typer.Exit(1)
-        cfg = PylliterateConfig.make(sources=src, inline=inline, linenums=linenums,
-                                     highlights=highlights, title=title)
-    return cfg
-
-
-# Then we use a decorator to bookkeeping common code between all commands
-
-def pylliterate_command(fn):
+def configurable(fn):
     def command(
             src: List[str] = typer.Option([]),
             inline: bool = False,
@@ -64,9 +43,12 @@ def pylliterate_command(fn):
             title: bool = False,
             config: Path = None,
     ):
-        cfg = _load_config(src, inline, linenums, highlights, title, config)
-        return fn(cfg)
-
+        try:
+            cfg = PylliterateConfig.load(src, inline, linenums, highlights, title, config)
+            return fn(cfg)
+        except PylliterateConfig.ConfigurationNotProvidedException as e:
+            typer.echo(str(e))
+            typer.Exit(code=1)
     return command
 
 
@@ -78,21 +60,26 @@ def pylliterate_command(fn):
 
 
 @app.command("build")
-@pylliterate_command
+@configurable
 def build(config: PylliterateConfig):
     process_all(config)
 
 
 # ## The config command
-
+#
+# > we named it konfig to avoid clashes with config parameter and shadowing
 
 @app.command("config")
-@pylliterate_command
-def config(config: PylliterateConfig):
-    print(yaml.safe_dump(config.dict()))
+@configurable
+def konfig(config: PylliterateConfig):
+    print(config)
 
 
-class IlliterateHandler(FileSystemEventHandler):
+# ## The watching system
+#
+# With `watchdog` we need to define a class that hold the logic to be executed when filesystem change
+# the PylliterateHandler class fulfil that purpose
+class PylliterateHandler(FileSystemEventHandler):
     def __init__(
             self, input_path: Path, output_path: Path, cfg: PylliterateConfig
     ) -> None:
@@ -106,15 +93,17 @@ class IlliterateHandler(FileSystemEventHandler):
         process(self.input_path, self.output_path, self.cfg)
 
 
+# Then we add a command (maybe a flag in the needed command is just a better idea) that set up the watchdog observer
+# mechanism over filesystem using our handler
 @app.command("watch")
-@pylliterate_command
+@configurable
 def watch(config: PylliterateConfig):
     process_all(config)
     observer = Observer()
 
     for input_path, output_path in config.files:
         observer.schedule(
-            IlliterateHandler(input_path, output_path, config), input_path
+            PylliterateHandler(input_path, output_path, config), input_path
         )
 
     observer.start()
