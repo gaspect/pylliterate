@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pylliterate"
-version = "0.0.5"
+version = "0.0.6"
 description = "Unobtrusive literate programming experience for Python pragmatists"
 # Poetry is ignoring multiple autors configuration line but's ok :)
 authors = ["Alejandro Piad <alepiad@gmail.com>", "Jesús Enrique Fuentes <jesusefg12@gmail.com>"]
@@ -14,7 +14,7 @@ pylliterate = "pylliterate.cli:app"
 [tool.poetry.dependencies]
 python="^3.12"
 typer = "^0.12.3"
-rich = "^9.0.1"
+rich = "^13.7.1"
 PyYAML = "^6.0.1"
 pydantic = "^2.7.1"
 watchdog = "^2.3.1"
